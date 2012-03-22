@@ -17,12 +17,15 @@ public class WebViewOrientationExample extends WebViewExample {
 		
 	    super.onConfigurationChanged(newConfig);
 
-	    setContent();
+	    changeContent();
 	}	
 
-	@Override
 	protected void setContent() {
-    	Log.d(TAG, "Scale picture depend device orientation");
+		changeContent();
+	}
+	
+	private void changeContent() {
+		Log.d(TAG, "Scale picture depend device orientation");
     	
     	Display display = ((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
     	
@@ -32,8 +35,7 @@ public class WebViewOrientationExample extends WebViewExample {
         Log.d(TAG, "Display width " + width);
         Log.d(TAG, "Display height " + height);
 
-    	String imgName = imageUtil.getRandomImage();
-    	Bitmap img = imageUtil.getImageBitmap(imgName);
+    	Bitmap img = imageUtil.getImageBitmap();
     	
         int picWidth = img.getWidth();
         int picHeight = img.getHeight();
@@ -52,7 +54,7 @@ public class WebViewOrientationExample extends WebViewExample {
     
     	webView.setInitialScale( val.intValue() );
 		webView.loadDataWithBaseURL("/", 
-				imageUtil.getImageHtml(imgName, picWidth, picHeight), 
+				imageUtil.getImageHtml(picWidth, picHeight), 
 				"text/html", 
 				"UTF-8", 
 				null);

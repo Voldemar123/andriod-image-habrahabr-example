@@ -7,44 +7,24 @@ import android.widget.Toast;
 
 public class SimpleImageViewExample extends Activity {
 
-	ImageView mImageView;
+	private ImageView mImageView;
+	protected ImageUtil imageUtil;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.example1);
-	
-		mImageView = (ImageView) findViewById(R.id.imageView1);
-		
-// How-to initialize image view content, 3 ways
-// https://developer.android.com/reference/android/widget/ImageView.html		
-// 1. from drawable
-// 2. from bitmap		
-// 3. from specified Uri		
-		
-		drawFromRecource();
-		drawFromSDCard();
+
+		loadImage();
 	}
 
-	/**
-	 * Fill image from resources
-	 */
-	private void drawFromRecource() {
-		mImageView.setImageResource(R.drawable.img3);
-	}
-	
-/**
- * Fill image from picture stored on SD card	
- */
-	private void drawFromSDCard() {
+	private void loadImage() {
 		try {
-			ImageUtil util = new ImageUtil( getApplicationContext() );
-			util.checkIsContentExists();
+			imageUtil = new ImageUtil( getApplicationContext() );
+			imageUtil.checkIsContentExists();
+			imageUtil.selectRandomImage();
 			
-			String imgName = util.getRandomImage();
-
-			mImageView.setImageBitmap( util.getImageBitmap(imgName) );
-			mImageView.setImageURI( util.getImageURI(imgName) );
+			setUpUI();
+			setContent();
 			
 		} catch (LocalizedException e) {
 			
@@ -53,7 +33,27 @@ public class SimpleImageViewExample extends Activity {
        			 Toast.LENGTH_LONG)
        			 .show();
 		}
-		
 	}
+	
+	protected void setUpUI() {
+		setContentView(R.layout.example1);
+		
+		mImageView = (ImageView) findViewById(R.id.imageView1);
+	}
+	
+	protected void setContent() {
+		// How-to initialize image view content, 3 ways
+		// https://developer.android.com/reference/android/widget/ImageView.html		
+		// 1. from drawable
+		// 2. from bitmap		
+		// 3. from specified Uri		
+		
+		mImageView.setImageResource(R.drawable.img3);
+		
+// Fill image from picture stored on SD card	
 
+		mImageView.setImageBitmap( imageUtil.getImageBitmap() );
+		mImageView.setImageURI( imageUtil.getImageURI() );
+	}
+	
 }

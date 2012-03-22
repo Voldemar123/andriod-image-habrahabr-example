@@ -35,6 +35,8 @@ public class ImageUtil {
 	private boolean mExternalStorageWriteable;
 
 	private Context mContext;
+	
+	private String image;
 
 	public ImageUtil(Context context) {
 		super();
@@ -151,11 +153,11 @@ public class ImageUtil {
 	}
 
 	// get picture bitmap
-	public Bitmap getImageBitmap(String imgName) {
-		Log.d(TAG, "Get picture bitmap " + imgName);
+	public Bitmap getImageBitmap() {
+		Log.d(TAG, "Get picture bitmap " + this.image);
 
 		try {
-			FileInputStream fis = new FileInputStream(Constants.APP_CACHE_PATH + imgName);
+			FileInputStream fis = new FileInputStream(Constants.APP_CACHE_PATH + this.image);
 			BufferedInputStream bis = new BufferedInputStream(fis);
 
 			Bitmap img = BitmapFactory.decodeStream(bis);
@@ -173,25 +175,25 @@ public class ImageUtil {
 	}
 
 	// get picture URI
-	public Uri getImageURI(String imgName) {
-		Log.d(TAG, "Get picture URI " + imgName);
+	public Uri getImageURI() {
+		Log.d(TAG, "Get picture URI " + this.image);
 
-		return Uri.fromFile( new File( Constants.APP_CACHE_PATH + imgName ) );
+		return Uri.fromFile( new File( Constants.APP_CACHE_PATH + this.image ) );
 	}
 
 // get random image from predefined list	
-	public String getRandomImage() {
+	private String getRandomImage() {
 		return Constants.IMAGE_NAMES[ new Random().nextInt( Constants.IMAGE_NAMES.length ) ];
 	}
 
 // get image file	
-	public String getRandomImageFile() {
-		return "file:///" + Constants.APP_CACHE_PATH + getRandomImage();
+	public String getImageFileLink() {
+		return "file:///" + Constants.APP_CACHE_PATH + this.image;
 	}
 
 // get image content HTML document 	
-	public String getImageHtml(String imgName, int width, int height) {
-		Log.d(TAG, "Get picture HTML " + imgName);
+	public String getImageHtml(int width, int height) {
+		Log.d(TAG, "Get picture HTML " + this.image);
 		
 		StringBuffer html = new StringBuffer();
 		
@@ -199,7 +201,7 @@ public class ImageUtil {
 		html.append("<img src='");
 		html.append("file:///");
 		html.append(Constants.APP_CACHE_PATH);
-		html.append(imgName);
+		html.append(this.image);
 		html.append("' width='");
 		html.append(width);
 		html.append("' height='");
@@ -207,6 +209,10 @@ public class ImageUtil {
 		html.append("'></body></html>");
 		
 		return html.toString();
+	}
+
+	public void selectRandomImage() {
+		this.image = getRandomImage();
 	}
 	
 }

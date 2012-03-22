@@ -12,9 +12,9 @@
     
     
 	<string-array name="example_items">
-        <item>Show image from resources / SD card</item>
-        <item>Show web view with image from SD card</item>
-        <item>Show scalable, orientation web view with image</item>
+        <item>Show simple image</item>
+        <item>Show web viewwith image</item>
+        <item>Show a scalable, orientation sensitive webview with image</item>
     </string-array>
 
 </resources>
