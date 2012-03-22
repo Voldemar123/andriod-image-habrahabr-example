@@ -10,9 +10,9 @@ public class Constants {
 		"/Android/data/" + APP_PREFS_NAME + "/cache/";
 	
 // localhost 	
-	public static final String APP_SOURCE_IMAGES_URL = "http://10.0.2.2/images/";
+//	public static final String APP_SOURCE_IMAGES_URL = "http://10.0.2.2/images/";
 // GitHub project storage 	
-//	public static final String APP_SOURCE_IMAGES_URL = "https://github.com/Voldemar123/andriod-friday-countdown/raw/master/pictures/";
+	public static final String APP_SOURCE_IMAGES_URL = "https://github.com/Voldemar123/andriod-image-habrahabr-example/raw/master/res/drawable/";
 	
 // pictures names list	
 	protected static final String IMAGE_NAMES[] = {
