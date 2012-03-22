@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Image view example for habrahabr.ru</string>
+
+	<string name="error_external_storage">Failed to access the SD card</string>
+	<string name="error_write_storage">Error reading from an external drive</string>
+	<string name="error_read_storage">Error writing to an external drive</string>
+	<string name="error_connection">Error during data transfer</string>
+	<string name="error_connection_status">Error occurred while trying download file</string> 
+	<string name="error_connection_not_present">Internet connection not present</string> 
+    
+    
+	<string-array name="example_items">
+        <item>Show image from resources / SD card</item>
+        <item>Show web view with image from SD card</item>
+        <item>Show scalable, orientation web view with image</item>
+    </string-array>
+
+</resources>
